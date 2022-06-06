@@ -1,0 +1,27 @@
+
+/* media queries */
+@media screen and (max-width: 991px){
+    .container {
+        width: 720px;
+    }
+
+    .scooter{
+        color: aqua;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .container {
+        width: 540px;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .container {
+        
+    }
+
+    
+}

@@ -1,0 +1,180 @@
+.electro{
+    background-color: var(--bg_color);
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    .modal{
+        top: 15%;      
+    }
+    .about-scooters {
+        display: flex;
+        justify-content: space-between;
+        
+        @media screen and (max-width: 991px){
+            display: flex;
+            flex-direction: column;     
+    }
+
+        img {        
+            height: 720px;
+            margin-right: 50px;
+            @media screen and (max-width: 1350px){
+                height: 400px;
+            } 
+            @media screen and (max-width: 992px){
+                width: 100%;
+                height: 100%;
+                margin: 0 auto;
+            }
+        }
+        
+    }
+
+    .dowl{    
+        text-align: center;
+        color: var(--text_color);
+        padding: 50px;
+           
+        
+        h2{
+            margin-bottom: 20px;
+        }
+    }
+
+    .btns {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+       
+    }
+
+    .btn {
+        background-color:#2980B9;
+        border-radius: 5px;
+        color: white;
+        padding: 12px 30px;
+        font-size: 15px;
+        margin: 0 10px;
+        text-transform: uppercase;
+      }
+
+      
+
+    .scooter{
+
+        @media screen and (max-width: 1350px){
+            padding: 50px;
+
+        }
+        @media screen and (max-width: 1191px){
+            margin-top: 20px;
+
+        }
+        
+       margin-top: 206px;
+
+        h2{
+            color: #D35400;  
+            font-size: 30px; 
+            line-height: 41px;
+        }
+        p{
+            color: var(--text_color);  
+            font-size: 16px;
+            line-height: 22px;
+        }
+    }
+
+    
+
+    .seo{
+        padding: 25px;
+        box-sizing: border-box;
+        background-color: #ECF0F1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 50px;
+        
+        h2{
+            color:#27AE60;
+        }
+        p{
+            color: #000000; 
+        }
+
+        .btn-SEO{
+        background-color:#1ABC9C;
+        border-radius: 5px;
+        color: white;
+        padding: 8px 24px;
+        font-size: 15px;
+        margin: 0 10px;
+        text-transform: uppercase;
+        }
+    }
+
+    .about-scooters-2{
+        display: flex;
+        justify-content: space-between;
+        
+        @media screen and (max-width: 991px){
+       
+            display: flex;
+            flex-direction: column-reverse;
+            
+    }
+    
+
+        img {  
+            margin-top: 50px;      
+            height: 720px;
+            margin-left: 50px; 
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            
+            @media screen and (max-width: 1350px){
+                height: 400px;
+            } 
+            @media screen and (max-width: 992px){
+                width: 100%;
+                height: 100%;
+                margin: 0 auto;
+                margin-top: 30px;
+            }
+        }
+    }
+
+    .scooter-2{
+
+        margin-top: 238px;
+ 
+        @media screen and (max-width: 1350px){
+            margin-top: 50px;
+
+        }
+        @media screen and (max-width: 1191px){
+            margin-top: 20px;
+
+        }
+         h2{
+             color: #D35400;  
+             font-size: 30px; 
+             line-height: 41px;
+         }
+         p{
+             color: var(--text_color);  
+             font-size: 16px;
+             line-height: 22px;
+         }
+     }
+}
+
+.modal-header{
+    button{
+        color: #C0392B ;
+        
+    }
+}
+

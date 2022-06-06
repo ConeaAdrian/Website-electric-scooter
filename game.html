@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <header class="game-header">
+      <nav>
+        <ul id="score">
+          <div>
+            <img src="./assets/img/black.svg" alt="" />
+            <p id="black">0</p>
+          </div>
+          <div>
+            <img src="./assets/img/red.svg" alt="" />
+            <p id="red">0</p>
+          </div>
+          <div>
+            <img src="./assets/img/green.svg" alt="" />
+            <p id="green">0</p>
+          </div>
+          <div>
+            <img src="./assets/img/blue.svg" alt="" />
+            <p id="blue">0</p>
+          </div>
+        </ul>
+        <button class="btn-add">Add Scooter</button>
+        <button class="btn-stop">Stop Game</button>
+
+        <div class="full-screen try-again hidden flex-container-center">
+          <h2>Congrats! Your garage (mixed):</h2>
+
+          <h3>Want to play again?</h3>
+          <button class="btn-relout">Start</button>
+        </div>
+      </nav>
+    </header>
+    <div class="full-screen lose-game hidden flex-container-center">
+      <h2>Game over!</h2>
+
+      <h3>Want to play again?</h3>
+      
+      <button class="btn-relout">Start</button>
+    </div>
+    <div class="game-zone"></div>
+    <script>
+      $(document).ready(function () {
+        const popup = $(".try-again");
+        function showPopup() {
+          popup.removeClass("hidden");
+        }
+
+        function closePopup() {
+          popup.addClass("hidden");
+        }
+
+        const btnRelout = $(".btn-relout");
+        const stop_game_btn = $(".btn-stop");
+        stop_game_btn.click(function () {
+          showPopup();
+          clearInterval(gameInterval);
+          popup.append($("#score"));
+        });
+
+        btnRelout.click(function () {
+          window.location.reload();
+        });
+
+        // functia pentru numar aleator de la 0 la 2
+        function getRandomInt(max) {
+          return Math.floor(Math.random() * max);
+        }
+
+        // creeam div-ul in care o sa fie taote scuterele
+        var scooterWrapper = $('<div class="scooter-wrapper"></div>');
+
+        // cream array in care salvam drumul spre directoriu cu fiecare imagine de culoare respectiva
+        var scootersColors = [
+          "./assets/img/red.svg",
+          "./assets/img/blue.svg",
+          "./assets/img/green.svg",
+        ];
+
+        // definim variabile pentru a calcula cantitatea scuterelor apasate
+        var red = 0;
+        var blue = 0;
+        var green = 0;
+
+        // aici se contine numarul total de scutere
+        var black = 0;
+
+        // aici noi creeam paragraful in care va fi procentajul pentru fiecare scuter
+        var scooterText = $('<p class="game-scooter-text"></p>');
+
+        // cream imaginea pentru scuter
+        var scooterImg = $('<img class="game-scooter-image" src="" alt="">');
+
+        var gameStartBtn = $("#game-start-btn"); // butonul de start
+        var gameZone = $(".game-zone");
+
+        var scooterOpacity;
+        var scooterPercentage;
+
+        var scooterColorClass;
+
+        gameZone.append(scooterWrapper);
+
+        for (var i = 0; i < 10; i++) {
+          var theRandomNumber = getRandomInt(3); // salvam un numar de la 0 la 2
+          scooterPercentage = Math.ceil(Math.random() * 100);
+
+          if (scooterPercentage < 20) {
+            scooterOpacity = 0.2;
+          } else if (scooterPercentage < 50) {
+            scooterOpacity = 0.5;
+          } else if (scooterPercentage < 70) {
+            scooterOpacity = 0.7;
+          } else if (scooterPercentage <= 99) {
+            scooterOpacity = 0.9;
+          } else if (scooterPercentage === 100) {
+            scooterOpacity = 1;
+          }
+
+          switch (theRandomNumber) {
+            case 0:
+              scooterColorClass = "red";
+              break;
+            case 1:
+              scooterColorClass = "blue";
+              break;
+            case 2:
+              scooterColorClass = "green";
+              break;
+
+            default:
+              break;
+          }
+
+          scooterWrapper.append(
+            `<div class="game-scooter ${scooterColorClass}" style="opacity:${scooterOpacity}"><p class="scooter-percentage">${scooterPercentage}%</p><img class="game-scooter-image" src="${scootersColors[theRandomNumber]}" alt=""></div>`
+          );
+        }
+
+        const allScooters = document.querySelectorAll(".game-scooter");
+        const scootersWrapper = $(".lose-game");
+
+        const gameIntervalFunction = function () {
+          allScooters.forEach((item) => {
+            let prevNum = item.firstChild.textContent.replace(/%/g, "");
+            item.firstChild.textContent = `${prevNum - 10}%`;
+
+            if (Number(item.firstChild.textContent.replace(/%/g, "")) < 0) {
+              item.remove();
+            }
+          });
+
+          if ($(".game-scooter").length === 0) {
+            clearInterval(gameInterval);
+            scootersWrapper.removeClass("hidden");
+          }
+        };
+
+        const gameInterval = setInterval(gameIntervalFunction, 1000);
+
+        const scooterSection = document.querySelector(".scooter-wrapper");
+
+        scooterSection.addEventListener("click", function (e) {
+          let targetItem = e.target;
+          if (targetItem.closest(".game-scooter")) {
+            targetItem.closest(".scooter-percentage").textContent = "100%";
+            setTimeout(() => {
+              if (
+                targetItem
+                  .closest(".scooter-percentage")
+                  .textContent.replace(/%/g, "") == "100"
+              ) {
+                targetItem.closest(".game-scooter").style.opacity = 1;
+              }
+            }, 500);
+          }
+          if (targetItem.closest(".game-scooter").classList.contains("red")) {
+            red++;
+          }
+          if (targetItem.closest(".game-scooter").classList.contains("blue")) {
+            blue++;
+          }
+          if (targetItem.closest(".game-scooter").classList.contains("green")) {
+            green++;
+          }
+
+          black = red + blue + green;
+
+          document.getElementById("red").textContent = red;
+          document.getElementById("blue").textContent = blue;
+          document.getElementById("green").textContent = green;
+          document.getElementById("black").textContent = black;
+        });
+      });
+    </script>
+  </body>
+</html>

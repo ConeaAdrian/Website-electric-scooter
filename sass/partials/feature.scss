@@ -1,0 +1,115 @@
+.feature{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg_color);
+
+    .modal{
+        top: 15%;   
+    }
+
+    .head{
+        text-align: center;
+        color: var(--text_color);
+        padding: 50px;
+              
+    }
+
+    .box-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @media screen and (max-width: 991px){
+            display: flex;
+            flex-direction: column;
+        } 
+
+        &:last-child {
+            justify-content: flex-start;
+        }
+    }
+
+    .box{
+        border-radius: 10px;
+        padding: .3px;
+        width: 360px;
+        background-color: #D2EDFF;
+        margin: 15px 20px 15px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        img {
+            padding-top: 20px;
+        }
+        @media screen and (max-width: 991px){
+            width: 738px;
+            
+        } 
+    }
+        
+
+    .content{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        a{
+            color: #000000;
+        }
+        p{
+            color: #000000;
+        }
+        span {
+            position: absolute;
+            transform: translate3d(150px, -170px, 40px);
+            color: #C0392B;
+            @media screen and (max-width: 991px){
+                
+                transform: translate3d(345px, -130px, 0px);
+            } 
+        }
+    }
+     
+    .seo{
+        padding: 25px;
+        box-sizing: border-box;
+        background-color: #ECF0F1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 50px;
+        
+        h2{
+            color:#27AE60;
+        }
+        p{
+            color: #000000; 
+        }
+        .btn {
+            background-color:  #1ABC9C;
+            border-radius: 5px;
+            color: white;
+            padding: 12px 30px;
+            font-size: 15px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            
+          }
+
+          .footerdow{
+            background-color: #000000;
+        }
+    }
+    
+    .long{
+        background: url(../assets/img/long2.png) no-repeat center top / cover;
+        height: 400px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
